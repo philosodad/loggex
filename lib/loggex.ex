@@ -1,0 +1,2 @@
+defmodule Loggex do
+end
