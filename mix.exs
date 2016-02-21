@@ -14,7 +14,7 @@ defmodule Loggex.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :cowboy, :plug, :postgrex, :ecto]]
+    [applications: [:logger, :cowboy, :plug, :postgrex, :ecto, :httpoison]]
   end
 
   # Dependencies can be Hex packages:
@@ -27,6 +27,14 @@ defmodule Loggex.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    []
+    [
+      {:httpoison, "~> 0.8.0"},
+      {:cowboy, "~> 1.0.0"},
+      {:plug, "~> 1.0"},
+      {:exjsx, "~> 3.2"},
+      {:postgrex, ">= 0.0.0"},
+      {:ecto, "~> 1.1.2"},
+      {:uuid, "~> 0.1.1"}
+    ]
   end
 end
