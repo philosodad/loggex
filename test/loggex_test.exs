@@ -4,6 +4,8 @@ defmodule LoggexTest do
   doctest Loggex
   
   setup do
+    Ecto.Adapters.SQL.restart_test_transaction(Loggex.Repo)
+
     :random.seed(:erlang.now)
     {:ok, repo} = Loggex.start
     on_exit fn ->
