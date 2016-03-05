@@ -8,4 +8,8 @@ defmodule Loggex.Logline do
     field :responseCode, :integer
     field :body, :string
   end
+
+  def changeset(logline, params) do
+    cast(logline, params, [], [:sendtime, :responseCode, :sender, :body]) 
+  end
 end
