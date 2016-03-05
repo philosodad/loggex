@@ -11,8 +11,6 @@ defmodule Loggex do
   plug :dispatch
 
   def start do
-    IEx.pry
-    update_counter("start.count.qps", 1)
     Plug.Adapters.Cowboy.http Loggex, [], port: 6438
     Loggex.Repo.start_link
   end
@@ -21,9 +19,9 @@ defmodule Loggex do
     Plug.Adapters.Cowboy.shutdown Loggex.HTTP
   end
 
-  @timed(key: "timed.event")
   post "/log" do
-    update_counter("loggex.count.qps", 1)
+    update_spiral("loggex.count.qps", 1 , time_span: :timer.seconds(1), slot_period: 1000)
+    update_histogram("loggex.hist", 1 , 1)
     Map.keys(conn.params)
     |> Enum.reduce(%{}, fn(k,acc) -> Map.put(acc, String.to_atom(k), conn.params[k]) end)
     |> (&(Map.merge(%Loggex.Logline{}, &1))).()
