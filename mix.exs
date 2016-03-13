@@ -14,7 +14,7 @@ defmodule Loggex.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :cowboy, :plug, :postgrex, :ecto, :httpoison]]
+    [applications: [:logger, :cowboy, :plug, :postgrex, :ecto, :httpoison, :elixometer]]
   end
 
   # Dependencies can be Hex packages:
@@ -34,6 +34,7 @@ defmodule Loggex.Mixfile do
       {:exjsx, "~> 3.2"},
       {:postgrex, ">= 0.0.0"},
       {:ecto, "~> 1.1.2"},
+      {:elixometer, github: "atlantaelixir/elixometer", override: true},
       {:uuid, "~> 0.1.1"}
     ]
   end

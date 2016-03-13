@@ -1,5 +1,6 @@
 defmodule Loggex do
   require IEx
+  use Elixometer
   use Plug.Router
   alias Loggex.Repo
   alias Loggex.Logline
@@ -20,6 +21,7 @@ defmodule Loggex do
   end
 
   post "/log" do
+    update_spiral("loggex.count.pps", 1 , time_span: :timer.seconds(1), slot_period: 1000)
     Logline.changeset(%Logline{}, conn.params)
     |> Repo.insert
     send_resp(conn, 200, "Request Logged")
