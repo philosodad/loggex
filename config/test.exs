@@ -3,6 +3,7 @@ config :loggex, Loggex.Repo,
   adapter: Ecto.Adapters.Postgres,
   pool: Ecto.Adapters.SQL.Sandbox,
   username: "postgres",
-  database: "loggex_test",
+  password: "runner"
+  database: "semaphoredb",
   size: 1
 
