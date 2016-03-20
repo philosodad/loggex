@@ -4,5 +4,3 @@ elixir:
 otp_release:
   - 18.2.1
 services: postgresql
-before_script:
- - psql -c 'create database loggex_test;' -U postgres
