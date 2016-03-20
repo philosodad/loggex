@@ -7,6 +7,8 @@ defmodule Loggex.Mixfile do
      elixir: "~> 1.2",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+     test_coverage: [tool: ExCoveralls],
+     preferred_cli_env: ["coveralls": :test, "coveralls.detail": :test, "coveralls.post": :test],
      deps: deps]
   end
 
@@ -34,8 +36,10 @@ defmodule Loggex.Mixfile do
       {:exjsx, "~> 3.2"},
       {:postgrex, ">= 0.0.0"},
       {:ecto, "~> 1.1.2"},
+      {:hackney, ~r/.*/, [git: "git://github.com/benoitc/hackney.git", branch: "master", manager: :rebar, override: true]},
       {:elixometer, github: "atlantaelixir/elixometer", override: true},
-      {:uuid, "~> 0.1.1"}
+      {:uuid, "~> 0.1.1"},
+      {:excoveralls, "~> 0.4", only: :test}
     ]
   end
 end
