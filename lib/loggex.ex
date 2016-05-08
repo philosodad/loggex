@@ -1,5 +1,6 @@
 defmodule Loggex do
   require IEx
+  use Application
   use Elixometer
   use Plug.Router
   alias Loggex.Repo
@@ -11,7 +12,7 @@ defmodule Loggex do
   plug :match
   plug :dispatch
 
-  def start do
+  def start _type, _args do
     Cowboy.http Loggex, [], port: 6438
     Repo.start_link
   end
@@ -27,4 +28,7 @@ defmodule Loggex do
     send_resp(conn, 200, "Request Logged")
   end
 
+  get "/ping" do
+    send_resp(conn, 200, "pong")
+  end
 end
