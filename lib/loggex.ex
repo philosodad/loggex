@@ -12,7 +12,9 @@ defmodule Loggex do
   plug :match
   plug :dispatch
 
-  def start _type, _args do
+  def start( _type, _args ), do: start
+
+  def start do
     Cowboy.http Loggex, [], port: 6438
     Repo.start_link
   end
