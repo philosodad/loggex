@@ -1,0 +1,27 @@
+version: "3.4"
+services:
+  loggex:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 6438:6438
+
+    volumes:
+      - .:/loggex:cached
+            
+    # Overrides default command so things don't shut down after the process ends.
+    command: sleep infinity
+      
+    links:
+      - db
+      
+  db:
+    image: postgres
+    restart: unless-stopped
+    ports: 
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: pass
+      POSTGRES_USER: user
+      POSTGRES_DB: data
